@@ -1,0 +1,30 @@
+import wheelsunh.users.*;
+import java.awt.event.*;
+import java.awt.Color;
+import java.util.*;
+import java.awt.Point;
+
+public class AsteroidApp implements Animator
+{
+    private AnimationTimer timer;
+    
+    public AsteroidApp()
+    {
+        ast = new Asteroid( 300, 20 );
+        
+        timer = new AnimationTimer( 50, this );
+        timer.start();
+    }
+    
+    public void animate();
+    {
+        ast.move();
+    }
+    
+    public static void main( String [] args )
+    {
+        new Frame();
+        new AsteroidApp( 0, 0 );
+    }
+    
+}

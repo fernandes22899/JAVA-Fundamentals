@@ -1,0 +1,33 @@
+
+import wheelsunh.users.*;
+import java.awt.Point;
+import java.awt.Color;
+
+public class LeftButton extends DrawButton
+{
+    
+    
+    public LeftButton( int x, int y, Snake s)
+    {
+        super( x, y, s );
+    }
+    
+    
+    public void mousePressed ( java.awt.event.MouseEvent e )
+    {
+        
+        setColor( Color.RED );
+        _snake.turnLeft();
+        
+    }
+    
+    
+
+    public static void main (String[]args)
+    {
+        new Frame();
+        Snake s1 = new Snake( 10, 10 );
+        DrawButton d = new DrawButton( 100, 100, s1 );
+        new LeftButton( 50, 50, s1 );
+    }
+}

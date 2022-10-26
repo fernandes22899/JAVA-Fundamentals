@@ -1,0 +1,106 @@
+import javax.swing.*;
+import java.io.*;
+import java.util.*;
+import wheelsunh.users.*;
+import java.awt.Color;
+import java.awt.Component;
+
+    /**
+     * creates the sequence class.  
+     * @author Adam Rosenbaum
+     *
+     */
+
+public class Sequence 
+{
+    private Vector < Nucleotide > nucleotide;
+    private String string;
+    
+    /**
+     * creates the sequence class. 
+     * @param dna String
+     *
+     */
+    
+    public Sequence( String dna )
+    {
+        string = dna;
+        nucleotide = new Vector < Nucleotide >();
+        int x = 0;
+        int y = 0;
+        
+        for ( int i = 0; i < dna.length(); i++ )
+        {
+            Nucleotide nuc = new Nucleotide ( dna.charAt ( i ), x, y );
+            nuc.setLocation( x, y );
+            
+            x += 20;
+            if ( x >= 700 )
+            {
+                x = 0;
+                y += 25;
+            }
+            nucleotide.add ( nuc );
+        }
+        
+        
+        
+    }
+    
+    /**
+     * creates a search method. 
+     * @param str String
+     *
+     */
+    
+    public void search( String str )
+    {
+
+        str.toUpperCase();
+        //System.out.println(str);
+        for ( int i = 0; i < nucleotide.size(); i++ )
+        {
+            Nucleotide n; // = nucleotide.get( i );
+            String pattern = "";
+            for ( int x = 0; x < str.length(); x++ )
+            {
+                if ((i + x) < nucleotide.size())
+                {
+                    n = nucleotide.get(i + x );
+                    pattern += n.getscharacter();  
+                    
+                }
+            }
+            //System.out.println(pattern);
+            if ( str.equals(pattern) )
+            {
+                nucleotide.get( i ).highlight();
+                for ( int x = 1; x < str.length(); x++ )
+                {
+                    nucleotide.get( i + x ).highlight();
+                }
+            }
+            
+            
+        }
+        
+            
+        
+        
+    }
+    
+    /**
+     * creates the main method. 
+     * @param args string
+     *
+     */
+    
+    public static void main( String args[] )
+    {
+        Frame f = new Frame( 700, 400 );
+        Sequence app = new Sequence ( "AACAACAGCACGTCGATGAA" );
+    }
+    
+    
+    
+}

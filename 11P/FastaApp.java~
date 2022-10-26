@@ -1,0 +1,113 @@
+import wheelsunh.users.*;
+import javax.swing.*;
+import java.io.*;
+import java.util.*;
+import javax.swing.JOptionPane;
+
+public class FastaApp
+{
+    private static JFileChooser chooser = null;
+    Scanner scan = new Scanner( System.in );
+    String nextHeader;
+    
+    public FastaApp()
+    {
+        
+    }
+    
+    public String readSequence()
+    {
+        String line;
+        String dna = "";
+        boolean number = scan.hasNextLine();
+        nextHeader = null;
+        
+        while( number )
+        {
+            line = scan.nextLine();
+            if( line.startsWith( ">" ) )
+            {
+                nextHeader = line;
+                number = false;
+            }
+            else
+            {
+                dna += line;
+                number = scan.hasNextLine();
+            }
+        }
+        return dna;
+        
+    }
+    
+    public void printSequences()
+    {
+        System.out.println( "+++++++++++++++++++++++++++++++++++++" );
+        //Syetem.out.println( "There were " + sequence.size() + " sequences read." );
+        System.out.println( "+++++++++++++++++++++++++++++++++++++" );
+        try
+        {
+            BufferedReader br = new BufferedReader( new FileReader("fasta-short.txt") );
+            String line = null;
+            while( ( line = br.readLine() ) != null )
+            {
+                System.out.println( line );
+            }
+        }
+        catch( FileNotFoundException e )
+        {
+            throw new DNASequenceException( "No file is found" );
+        }
+    }
+    
+    public static void main( String[]args )
+    {
+        /*
+        Scanner s = new Scanner( System.in );
+        s = P11FileUtilities.getFileName();
+        String str = "";
+        
+        DNASequence dnaSequence = null;
+        Vector v = new Vector();
+        File f = new File("C:\fasta-short.txt");
+        
+        while( s.hasNextLine() )
+        {
+            String st = s.nextLine();
+            str +=s;
+        }
+        
+        
+        //DNASequence sear = JOptionPane.showInputDialog( "Testing" );
+        
+        while( sear != null ) 
+        {
+            String fC = line.firstCharacter();
+            if( firstCharacter != null && firstCharacter.equals(">") )
+            {
+                // then this is a new sequence
+               
+                // first, add the previous DNA Sequence to Vector
+                // only if dnaSequence is not null,
+                // because if dnaSequence is null then we are at the beginning of the file
+                if(dnaSequence != null)
+                {
+                    v.add(dnaSequence);
+                }
+                
+                // next, create a new dnaSequence
+                DNASequence dnaS = new DNASequence();
+               
+                // set the header
+                dnaSequence.setHeader(line);
+            }
+            else 
+            {
+                // add the line to the dna string
+                dnaSequence.setString(line);
+            }
+        }
+        */
+    }
+    
+}

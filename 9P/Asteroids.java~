@@ -1,0 +1,26 @@
+import wheelsunh.users.*;
+import java.awt.event.*;
+import java.awt.Color;
+import java.util.*;
+import java.awt.Point;
+
+public class Asteroids
+{
+    private Ellipse asteroid;
+    private Line aLine;
+    
+    public Asteroids( int x, int y )
+    {
+        
+    }
+    
+    public void asteroid( int x, int y )
+    {
+        Random r = new Random();
+        int sizeX = r.nextInt( 9 ) + 4;
+        int sizeY = r.nextInt( 9 ) + 4;
+        asteroid = new Ellipse( 
+        
+        
+        
+    }

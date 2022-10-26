@@ -1,0 +1,27 @@
+import wheelsunh.users.*;
+import java.awt.Color;
+
+public class Crossheir
+{
+    private Ellipse c;
+    private Line l1, l2;
+    
+    public Crossheir
+    {
+        
+    }
+    
+    public void cross( x, y )
+    {
+        c = new Ellipse( x + 10, y + 10 );
+        c.setFillColor( Color.WHITE );
+        c.setFrameColor( Color.BLACK );
+        c.setFrameThickness( 10 );
+    }
+    
+    
+    public static void main( String[]args )
+    {
+        
+    }    
+}

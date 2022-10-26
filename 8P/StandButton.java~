@@ -1,0 +1,53 @@
+import wheelsunh.users.*;
+import java.awt.event.*;
+import java.awt.Color;
+
+/**Models a game of BlackJack (just a skeleton now).
+ * 
+ *  @author cs415
+ * 
+ * This is a skeleton, complete the code  and add methods etc. 
+ * to implement your game of  blackjack.
+ */
+public class StandButton extends Info
+{
+    private RoundedRectangle sB;
+    private TextBox standText;
+    
+    public StandButton( int x, int y )
+    {
+        super( x, y );
+        makeStand( x, y );
+    }
+    
+    public void makeStand( int x, int y )
+    {
+        
+        sB = new RoundedRectangle( x + 36, y + 440 );
+        sB.setSize( 18, 18 );
+        sB.setColor( Color.WHITE );
+        
+        standText = new TextBox( 56, 437 );
+        standText.setColor( new Color( 0, 0, 0, 0 ) );
+        standText.setText( " Stand" );
+        //sB.hide();
+        //standText.hide();
+        
+    }
+    
+    public void mousePressed ( MouseEvent e )
+    {
+        this.setColor( Color.BLACK );
+    }
+    
+    public void mouseReleased ( MouseEvent e )
+    {
+        this.setColor( Color.WHITE );
+    }
+    
+    public static void main( String[]args )
+    {
+        new Frame();
+        StandButton s = new StandButton( 0, 0 );
+    }   
+}

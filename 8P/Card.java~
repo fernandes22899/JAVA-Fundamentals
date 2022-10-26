@@ -1,0 +1,223 @@
+import java.awt.Color;
+import java.awt.event.*;
+import wheelsunh.users.*;
+import java.awt.image.BufferedImage;
+import javax.swing.*;
+import java.io.*;
+import javax.imageio.*;
+import java.awt.event.*;
+import java.util.*;
+import java.util.jar.*;
+import java.util.zip.*;
+
+
+
+/**
+ * Card, model a simple playing card.
+ * 
+ * Uses images from: http://www.jfitz.com/cards/
+ * These images were created using GIFCon, XnView and Paint Shop Pro.
+ * Feel free to use for personal or professional purposes
+ * 
+ * @author cs415
+ *   
+ */
+public class Card extends ShapeGroup 
+{
+    private Image _face;
+    private Image _back;
+    private int _suit, _rank;
+    
+    public  static final int WIDTH = 71;       
+    public static final int HEIGHT = 96;      
+    
+    // private final static String DIR = "cards_gif/";
+    private final static String BACK = "b1fv.gif";  // 1 blue, 2 red
+    private final static String EXT = ".gif";
+    
+    
+    private static String[] rankString = { "r",  "1", "2", "3", "4",
+        "5", "6", "7", "8", "9", "10", "j", "q", "k"  };
+    private static String[] suitString = { "j",  "s", "h", "d", "c" };
+    
+    private static JarFile jarFile;
+    private static final String JAR_SOURCE = "cards_gif.jar";
+    
+    //------------------------------------------------------
+    /**
+     * Construct a Card.
+     * 
+     * @param rank int
+     * @param suit int
+     */
+    public Card( int rank, int  suit )
+    {     
+        _rank = rank;
+        _suit = suit;
+        
+        // gets image from cards_gif
+        String fileName = suitString[ suit ] + rankString[ rank ]
+            + EXT;
+        
+        _face = new Image( readCardImage( fileName ) );
+        
+        _face.setLocation( -80, 0 );
+        
+        _back = new Image( readCardImage( BACK ) );
+        _back.setLocation( -80, 0 );
+        add( _face );
+        add( _back );   
+    }
+    
+    
+    //----------------------------------------------------------------
+    /**
+     * getRank.
+     * 1-ace; 2- 2; 3-3; 4-4; 10-10; 11-J; 12-Q; 13-K
+     * 
+     * @return int
+     */
+    public int getRank( )
+    {
+        return _rank;
+    } 
+    
+    //----------------------------------------------------------------
+    /**
+     * get suit.
+     * 1-spade; 2-heart; 3-diamond; 4-club
+     * 
+     * @return int
+     */
+    public int getSuit( )
+    {
+        return _suit;
+    } 
+    
+    
+    //----------------------------------------------------------------
+    /**
+     * Show the card.
+     * 
+     */
+    public void hide( )
+    {
+        _back.hide();
+        _face.hide();
+    }
+    
+    //----------------------------------------------------------------
+    /**
+     * Hide the card.
+     * 
+     * 
+     */
+    public void show( )
+    {
+        _back.show();
+        _face.show();
+    }
+    
+    
+    //----------------------------------------------------------------
+    /**
+     * Show the card.
+     * 
+     */
+    public void showFace( )
+    {
+        _back.hide();
+        _face.show();
+    }
+    
+    //----------------------------------------------------------------
+    /**
+     * Hide the card.
+     * 
+     * 
+     */
+    public void hideFace( )
+    {
+        _face.hide();
+        _back.show();
+    }
+    
+    //----------------------------------------------------------------
+    /**
+     * Return the card as a String.
+     * 
+     * @return String
+     */
+    public String toString()
+    {
+        String s = "";
+        if ( _rank == 1 )
+            s += "Ace of ";
+        else if ( _rank == 11 )
+            s += "Jack of ";
+        else if ( _rank == 12 )
+            s += "Queen of ";
+        else if ( _rank == 13 )
+            s += "King of ";
+        else
+            s += ( _rank + " of " );
+        
+        if ( _suit == 1 )
+            s += "Spades";
+        else if ( _suit == 2 )
+            s += "Hearts"; 
+        else if ( _suit == 3 )
+            s += "Diamonds";
+        else
+            s += "Clubs";
+        
+        return s;
+    }
+    
+    
+    //---------------------- readImageFromJar -------------------------
+    /**
+     * Read an image of a card from a jar file.
+     *
+     * @param cardName String  the file name of desired image
+     * @return BufferedImage
+     */
+    private BufferedImage readCardImage( String cardName )
+    {
+        //////////////////////////////////////////////////////////////
+        // A jar file is a single "archive" file that contains 
+        // compressed versions of 1 or more separate files. It is very
+        // useful (and pretty easy) to read files directly from the 
+        // jar file, rather than requiring the user to "unjar" the files
+        //
+        // There are basically 4 steps in the process. 
+        // All these steps need to be done inside a try-catch block
+        //   that catches IOExceptions.
+        
+        /////////////////////////////////////////////////////////////
+        BufferedImage cardImage = null;  // initialize return to null
+        
+        try 
+        {
+            // 1. create JarFile if not already done
+            jarFile = new JarFile( JAR_SOURCE );
+            
+            // 2. get ZipEntry for "cardName" 
+            ZipEntry cardEntry = jarFile.getEntry( cardName );
+            
+            // 3. get an InputStream object from the jarFile for the
+            //    ZipEntry in step 2.
+            InputStream jarIn = jarFile.getInputStream( cardEntry );
+            
+            // 4. Use the static read method of ImageIO to read the 
+            //    input stream as a BufferedImage object:
+            cardImage =  ImageIO.read( jarIn );
+        }
+        catch ( IOException ex )
+        {
+            System.err.println( "Card image error: " + ex.getMessage() );
+        }
+        
+        return cardImage;
+    }
+} 

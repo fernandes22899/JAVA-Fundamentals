@@ -1,0 +1,42 @@
+import javax.swing.*;
+import java.io.*;
+import java.util.*;
+import wheelsunh.users.*;
+import java.awt.Color;
+import javax.swing.JOptionPane;
+
+/**
+ * creates the DNASearch class. 
+ * @author Adam Rosenbaum
+ * 
+ */
+
+public class DNASearch
+{
+  
+  /**
+   * creates main.
+   * @param args String
+   * 
+   */
+    public static void main( String args[] )
+    {
+        Frame f = new Frame( 700, 400 );
+        Scanner scan = new Scanner( System.in );
+        scan = FileUtilities.getFileScanner();
+        String str = "";
+        
+        while( scan.hasNextLine() ) 
+        {
+            String s = scan.nextLine();
+            str += s;
+        }
+
+            Sequence seq = new Sequence ( str );
+            String st = JOptionPane.showInputDialog( "Enter Search String" );
+
+            seq.search( st.toUpperCase( ) ); 
+
+    }
+        
+}

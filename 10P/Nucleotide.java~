@@ -1,0 +1,91 @@
+import javax.swing.*;
+import java.io.*;
+import java.util.*;
+import wheelsunh.users.*;
+import java.awt.Color;
+
+    /**
+     * creates the nucleotide class. 
+     * @author Adam Rosenbaum
+     *
+     */
+
+public class Nucleotide extends TextBox
+{
+    private TextBox t;
+    private Color d;
+    private char character;
+    
+    /**
+     * creates the Nucleotide class. 
+     * @param a char
+     * @param x int
+     * @param y int
+     *
+     */
+    
+    public Nucleotide( char a, int x, int y )
+    {
+        super.setText( Character.toString( a ) );
+        super.setSize( 20, 25 );
+        super.setFrameColor( Color.black );
+        character = a;
+        
+        if( a == 'A' )
+        {
+            super.setFillColor( Color.red );
+        }
+        else if ( a == 'T' )
+        {
+            super.setFillColor( Color.cyan );
+        }
+        else if ( a == 'C' )
+        {
+            super.setFillColor( Color.yellow );
+        }
+        else if ( a == 'G' )
+        {
+            super.setFillColor( Color.green );
+        }
+        else 
+        {
+            super.setFillColor( new Color( 160, 160, 160 ) );
+        }
+        d = getFillColor().darker();
+        super.setFillColor( d );
+    }
+    
+    /**
+     * creates a reset method. 
+     * 
+     *
+     */
+    
+    public void reset()
+    {
+        super.setFillColor( d );
+    }
+    
+    /**
+     * creates a highlight method. 
+     * 
+     *
+     */
+    
+    public void highlight()
+    {
+        super.setFillColor( d.brighter() );
+    }
+    
+    /**
+     * creates a getcharacter method. 
+     * @return character
+     *
+     */
+    
+    public char getscharacter()
+    {
+        return character;
+    }
+}
+

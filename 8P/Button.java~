@@ -1,0 +1,50 @@
+import wheelsunh.users.*;
+import java.awt.event.*;
+import java.awt.Color;
+
+/**Models a game of BlackJack (just a skeleton now).
+ * 
+ *  @author cs415
+ * 
+ * This is a skeleton, complete the code  and add methods etc. 
+ * to implement your game of  blackjack.
+ */
+public class Info extends RoundedRectangle
+{
+    private int id, current, stake;
+    private boolean dBool, hBool, sBool;
+    private Game game;
+    private RoundedRectangle dB, hB, sB;
+    private TextBox dealText, hitText, standText;
+    
+    
+    public Info( int x, int y )
+    {
+        super();
+        this.setLocation( x, y );
+        this.setColor( Color.WHITE );
+        
+        DealButton dButton = new DealButton( x, y );
+        HitButton hButton = new HitButton( x, y );
+        StandButton sButton = new StandButton( x, y );
+    }
+    
+    
+    public void mousePressed( MouseEvent a )
+    {
+        this.setColor( Color.BLACK );
+        
+        
+    }
+    
+    public void mouseReleased( MouseEvent a )
+    {
+        this.setColor( Color.WHITE );
+    }
+    
+    public static void main( String []a )
+    {
+        new Frame();
+        Info i = new Info( 0, 0 );
+    }
+}

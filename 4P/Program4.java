@@ -1,0 +1,55 @@
+import wheelsunh.users.*;
+import java.awt.Color;
+
+/**
+ * Class Program4 makes a textbox and calls the moveUp method. 
+ * to move the Avatar.
+ * @author Jeffrey Fernandes
+ */
+
+public class Program4
+{
+    private TextBox yLocation;
+    
+    /**
+     * Constructor for Program4 class.
+     */
+    
+    public Program4()
+    {
+        setText();
+        Avatar a = new Avatar( 100, 200 );
+        a.moveUp( 20 );
+        
+        for( int i = 0; i < 45; i += 5 )
+        {
+            a.moveUp( i );
+            Utilities.sleep( 500 );
+            int y = a.getYLocation();
+            yLocation.setText( "Y Location is " + y );
+        }
+    }
+    
+    /**
+     * Mathod that makes a textbox.
+     */
+    
+    public void setText()
+    {
+        yLocation = new TextBox( 200, 50 );
+        yLocation.setSize( 200, 50 );
+        yLocation.setText( "Y Location is " );
+    }
+    
+    /**
+     * main program creates a frame and invokes the class constructor.
+     * @param args String
+     */
+    
+    public static void main( String[]args )
+    {
+        Frame f = new Frame();
+        Program4 p = new Program4();
+        
+    }
+}

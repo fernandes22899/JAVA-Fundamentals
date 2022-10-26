@@ -1,0 +1,55 @@
+import wheelsunh.users.*;
+import java.awt.Color;
+import java.awt.Point;
+
+/** 
+ * Tree.java.
+ * CS415 
+ * @author Jeffrey Fernandes
+ * Assignment #6
+ * 6P
+ */
+
+public class Tree extends ShapeGroup implements Seasonal
+{
+    private Rectangle trunk, b1, b2, b3;
+    
+    public Tree( int x, int y )
+    {
+        
+    }
+    
+    public void summer()
+    {
+        
+    }
+    
+    public void winter()
+    {
+        
+    }
+    
+    public void fall()
+    {
+        
+    }
+    
+    public void spring()
+    {
+        
+    }
+    
+    public void tree( int x, int y )
+    {
+        trunk = new Rectangle( x + 60, y + 60 );
+        trunk.setColor( Color.BROWN );
+        trunk.setSize( 40, 90 );
+        
+    }
+    
+    
+    public static void main( String[]args )
+    {
+        
+    }
+}

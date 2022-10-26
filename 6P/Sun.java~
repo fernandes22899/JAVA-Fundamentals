@@ -1,0 +1,56 @@
+import wheelsunh.users.*;
+import java.awt.Color;
+import java.awt.Point;
+
+/** 
+ * Sun.java.
+ * CS415 
+ * @author Jeffrey Fernandes
+ * Assignment #6
+ * 6P
+ */
+
+public class Sun extends ShapeGroup implements Seasonal
+{
+    private Ellipse s,c1 ,c2 , c3;
+    
+    public Sun()
+    {
+        winter();
+    }
+    
+    private void winter()
+    {
+        
+    }
+    
+    private void spring()
+    {
+        
+    }
+    
+    private void summer()
+    {
+        
+    }
+    
+    private void fall()
+    {
+        
+    }
+    
+    public void sun( int x, int y )
+    {
+        s = new Ellipse( x + 15, y + 15 );
+        s.setColor( Color.YELLOW );
+        s.setSize( 40, 40 );
+        
+        
+    }
+    
+    public static void main( String[]args )
+    {
+        new Frame();
+        Sun s = new Sun();
+    }
+}

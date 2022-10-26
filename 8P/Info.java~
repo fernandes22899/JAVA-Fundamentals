@@ -1,0 +1,68 @@
+import wheelsunh.users.*;
+import java.awt.event.*;
+import java.awt.Color;
+
+/**Models a game of BlackJack (just a skeleton now).
+ * 
+ *  @author cs415
+ * 
+ * This is a skeleton, complete the code  and add methods etc. 
+ * to implement your game of  blackjack.
+ */
+public class Info extends RoundedRectangle
+{
+    private int id, current, stake;
+    private boolean dBool, hBool, sBool;
+    private Game game;
+    private RoundedRectangle dB, hB, sB;
+    private TextBox infoText, dealText, hitText, standText;
+    private Rectangle active, info;
+    
+    public Info( int x, int y )
+    {
+        super();
+        this.setLocation( x, y );
+        this.setColor( Color.RED );
+        box( x, y );
+        DealButton dButton = new DealButton( x, y );
+        HitButton hButton = new HitButton( x, y );
+        StandButton sButton = new StandButton( x, y );
+    }
+    
+    
+    
+    public void box( int x, int y )
+    {
+        active = new Rectangle( x + 30, y + 370 );
+        active.setColor( new Color( 150, 153, 158 ) );
+        active.setSize( 80, 95 );
+        info = new Rectangle( x + 30, y + 170 );
+        info.setColor( new Color( 150, 153, 158 ) );
+        info.setSize( 180, 160 );
+        infoText = new TextBox( x + 33, y + 173 );
+        infoText.setColor( new Color( 0, 0, 0, 0 ) );
+        infoText.setText( "    Welcome to Blackjack!" + "\n\n=================="
+                             + " Player Stake: " + "\n\n==============="
+                             + "Message: " + "\nCount \nStand or Hit?" );
+    
+    }
+    
+    
+    public void mousePressed( MouseEvent a )
+    {
+        this.setColor( Color.BLACK );
+        
+        
+    }
+    
+    public void mouseReleased( MouseEvent a )
+    {
+        this.setColor( Color.WHITE );
+    }
+    
+    public static void main( String []a )
+    {
+        new Frame();
+        Info i = new Info( 0, 0 );
+    }
+}

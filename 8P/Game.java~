@@ -1,0 +1,122 @@
+import wheelsunh.users.*;
+import java.awt.event.*;
+import java.awt.Color;
+
+/**Models a game of BlackJack (just a skeleton now).
+ * 
+ *  @author cs415
+ * 
+ * This is a skeleton, complete the code  and add methods etc. 
+ * to implement your game of  blackjack.
+ */
+public class Game extends ShapeGroup
+{
+    private Board _board;
+    private int money = 500, totalPlayer, totalComp, current;
+    private RoundedRectangle deal, hit, stand;
+    private DrawButton dB, hB, sB;
+    private boolean dBool, hBool, sBool, check;
+    
+    
+    //--------------------------------------------------------------
+    /**Constuct a game of Blackjack.
+     * @param b Board
+     */
+    public Game( Board b )
+    {
+        // save the board as a peer
+        _board = b;
+        
+        Info i = new Info( 0, 0 );
+        
+        //playGame(b);
+        
+    }
+    
+    public void dealPlayer()
+    {
+        _board.hitPlayer();
+        System.out.println( "Player gets " + current );
+        Utilities.sleep( 1000 );
+        
+        _board.hitDealer(); 
+        System.out.println( "Dealer gets " + current );
+        Utilities.sleep( 1000 );
+        
+        _board.hitPlayer(); 
+        System.out.println( "Player gets " + current );
+        Utilities.sleep( 1000 );
+    }
+    
+    public void hitPlayer()
+    {
+        
+      
+    }
+    
+    public void standPlayer()
+    {
+        
+        
+    }
+    
+    /*
+    public void playGame( Board b )
+    {
+        
+        if( dB.getDBool() == true )
+        {
+            
+        // save the board as a peer
+        _board = b;
+        // This code is just a demo of some of the Board methods
+        int current;
+        
+        //Utilities.sleep( 1000 );
+        current =  _board.hitPlayer(); 
+        System.out.println( "Player gets " + current );
+        Utilities.sleep( 1000 );
+        
+        current =  _board.hitDealer(); 
+        System.out.println( "Dealer gets " + current );
+        Utilities.sleep( 1000 );
+        
+        current =  _board.hitPlayer(); 
+        System.out.println( "Player gets " + current );
+        Utilities.sleep( 1000 );
+        
+        deal.hide();
+        dealText.hide();
+        hit.show();
+        hitText.show();
+        stand.show();
+        standText.show();
+        
+        }
+        
+        
+        current =  _board.hitDealer(); 
+        System.out.println( "Dealer gets " + current );
+        Utilities.sleep( 1000 );
+        _board.showDealer();
+        
+        Utilities.sleep(1000);
+        _board.clear();
+        
+        
+    }
+    */
+    
+    
+    //----------------------------------------------------------
+    /**Starts the main app.
+     * @param a String
+     */
+    public static void main( String a[] )
+    {
+        new Frame();
+        new BlackJackApp( a ); 
+        
+        
+    }
+}

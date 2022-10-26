@@ -1,0 +1,51 @@
+import wheelsunh.users.*;
+import java.awt.Color;
+import java.awt.Point;
+import java.awt.event.*;
+
+
+public class Crosshair extends ShapeGroup
+{
+    public Ellipse c;
+    private Line l1, l2;
+    private Color color = new Color( 0, 0, 0, 0 );
+    
+    public Crosshair()
+    {
+        
+    }
+    
+    public void makeCross( int x, int y )
+    {
+        c = new Ellipse( x + 5, y + 5 );
+        c.setFillColor( color );
+        c.setFrameColor( Color.BLACK );
+        c.setFrameThickness( 5 );
+        c.setSize( 20, 20 );
+        add( c );
+        
+        l1 = new Line( x + 15, y + 0, x + 15, y + 30 );
+        l1.setColor( Color.BLACK );
+        l1.setThickness( 2 );
+        add( l1 );
+        
+        l2 = new Line( x + 0, y + 15, x + 30, y + 15 );
+        l2.setColor( Color.BLACK );
+        l2.setThickness( 2 );
+        add( l2 );
+        
+    }
+    
+    public Point getPoint()
+    {
+        Point center = c.getCenter();
+        return center;
+    }
+    
+    public static void main( String[]args )
+    {
+        new Frame();
+        Crosshair c = new Crosshair();
+        
+    }    
+}

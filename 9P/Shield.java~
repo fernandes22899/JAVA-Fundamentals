@@ -1,0 +1,42 @@
+import wheelsunh.users.*;
+import java.awt.event.*;
+import java.awt.Color;
+import java.util.*;
+import java.awt.Point;
+
+public class Shield
+{
+    private Ellipse shield;
+    
+    public Shield()
+    {
+        shield = new Ellipse();
+        shield.setSize( 30, 10 );
+        shield.setColor( Color.YELLOW );
+        
+    }
+    
+    public void mousePressed ( java.awt.event.MouseEvent e )
+    {
+        lastMousePosition = e.getPoint();
+        r1.setColor( Color.GRAY );
+        x1 = getXLocation();
+        y1 = getYLocation();
+    }
+    
+    public void MouseDragged( MouseEvent e )
+    {
+        Point currentPoint = e.getPoint();
+        int diffX = currentPoint.x - lastMousePosition.x;
+        int diffY = currentPoint.y - lastMousePosition.y;
+        setLocation( getLocation().x + diffX, getLocation().y + diffY );
+        lastMousePosition = currentPoint;
+    }
+    
+    public static void main( String[]args )
+    {
+        new Frame( 700, 400 );
+        new Shield();
+    }
+    
+}

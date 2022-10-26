@@ -1,0 +1,171 @@
+import wheelsunh.users.*;
+import javax.swing.*;
+import java.util.*;
+import java.io.*;
+import javax.swing.JOptionPane;
+ 
+public class FastaApp
+{
+   
+    Scanner scan = new Scanner( System.in );
+    private static JFileChooser chooser = null;
+    String nextHeader;
+   
+    /**
+     * this is the constructor.
+     *
+     *
+     */
+   
+    public FastaApp()
+    {
+    }
+   
+    /**
+     * creates a read sequence.
+     *
+     *
+     */
+   
+    public String readSequence()
+    {
+       
+        String st;
+        boolean num = scan.hasNextLine();
+        String dnaSt = "";
+       
+        nextHeader = null;
+       
+        while( num )
+        {
+           
+            st = scan.nextLine();
+           
+            if ( st.startsWith( ">" ) )
+            {
+               
+                num = false;
+                nextHeader = st;
+                   
+            }
+            else
+            {
+               
+                dnaSt += st;
+                num = scan.hasNextLine();
+               
+            }
+        }
+       
+        return dnaSt;
+       
+    }
+   
+    /**
+     * this is the main and test.
+     * @param args string
+     *
+     */
+   
+    public static void main ( String[]args )
+    {
+        String name = P11FileUtilities.getFileName();
+        int seq = 0;
+       
+        try
+        {
+           
+            BufferedReader buff = new BufferedReader( new FileReader( name ) );
+            String l = null;
+           
+            while ( ( l = buff.readLine() ) != null )
+            {
+                if ( l.startsWith( ">" ) )
+                {
+                    seq++;
+                }
+            }
+           
+        }
+        catch( Exception me )
+        {
+           
+            throw new DNASequenceException( "Sequences not located" );
+           
+        }
+       
+        System.out.println( "++++++++++++++++++++++++++++++++++++++++++++++" );
+        System.out.println( "There were " + seq + " sequences read." );
+        System.out.println( "++++++++++++++++++++++++++++++++++++++++++++++" );
+       
+        try
+        {
+           
+            BufferedReader buff = new BufferedReader( new FileReader( name ) );
+            String st = null;
+           
+            while( ( st = buff.readLine() ) != null )
+            {
+                
+                System.out.println( st );
+               
+            }
+           
+        }
+        catch( Exception me )
+        {
+           
+            throw new DNASequenceException( "File not located" );
+           
+        }
+       
+        String text = seq + " sequences in memory.\nEnter a command:\n 
+            "Display <Id>(Display nucleotide "
+                               + "with given id)\n    Search
+                             "<Pattern>(Search for sequences containing pattern)";
+       
+        String in = JOptionPane.showInputDialog( text );
+       
+        if ( in != null )
+        {
+            Scanner scan = new Scanner( in );
+            String next = scan.next();
+           
+            if ( in.startsWith( "s" ) || in.startsWith( "S" ) )
+            {
+                String seqId = scan.next();
+               
+                System.out.println( seqId );
+            }
+            if ( in.startsWith( "d" ) || in.startsWith( "D" ) )
+            {
+                if ( scan.hasNext() )
+                {
+                    next = scan.next();
+                    /*
+                    try
+                    {
+                        dna = new DNASequence( header, sequence );
+                    }
+                    catch( Exception e )
+                    {
+                        throw new DNASequenceException( " Can't find file " );
+                    }
+                   
+                    String header = dna.getHeader();
+                    String dna2 = dna.getDNASequence();
+                    String str = header + "\n" + dna2;
+                    JOptionPane.showMessageDialog( null, str );
+                */
+               
+                }
+               
+            }
+           
+            
+        }
+       
+        
+        
+    }
+}

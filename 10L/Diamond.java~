@@ -1,0 +1,23 @@
+import java.awt.Color;
+import wheelsunh.users.*;
+
+public class Diamond extends ShapeGroup implements Faller
+{
+    private Rectangle r1, r2;
+    
+    public Diamond( int x, int y )
+    {
+        r1 = new Rectangle( x, y );
+        r1.setRotation(45); 
+        
+        
+        r2 = new Rectangle( x, y );
+    }
+    
+    
+    public static void main( String [] args)
+    {
+        
+    }
+    
+}

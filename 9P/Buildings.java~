@@ -1,0 +1,40 @@
+import wheelsunh.users.*;
+import java.awt.event.*;
+import java.awt.Color;
+import java.util.*;
+import java.awt.Point;
+
+public class Buildings
+{
+    private Random r;
+    private rectangle b;
+    private Vector<Rectangle> buildings;
+    private int width, height;
+    
+    
+    public Buildings()
+    {
+        r = new Random();
+        buildings = new Vector<Rectangle>();
+        for( int i = 0; i < 13; i++ )
+        {
+            width = r.nextInt( 90 ) + 40;
+            height = r.nextInt( 150 ) + 60;
+            b = new Rectangle();
+            r.setSize( width, height );
+            r.setLocation( i*width, 700 - height );
+            buildings.add( r );
+        
+        }
+    
+    
+    
+    
+    
+    public static void main( String[]args )
+    {
+        new Frame( 700, 400 );
+        new Buildings();
+    }
+    
+}

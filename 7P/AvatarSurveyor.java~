@@ -1,0 +1,131 @@
+import wheelsunh.users.*;
+import java.awt.Color;
+import java.awt.Point;
+import java.awt.event.*;
+
+public class AvatarSurveyor extends Avatar
+{
+    private Point lastMousePoint, linePoint;
+    private TextBox a;
+    private Line l, inf, b1, b2, b3, b4;
+    
+    public AvatarSurveyor()
+    {
+        makeAvatar( 90, 150 );
+        makeCross( 85, 185 );
+        a = new TextBox( 10, 10 );
+        this.updateInfo();
+        l = new Line( 100, 200, 100, 200 );
+        inf = new Line( 100, 200, 100, 200 );
+        b1 = new Line( 100, 200, 100, 200 );
+        b2 = new Line( 100, 200, 100, 200 );
+        b3 = new Line( 100, 200, 100, 200 );
+        b4 = new Line( 100, 200, 100, 200 );
+        
+        b1.setThickness( 2 );
+        b2.setThickness( 2 );
+        b3.setThickness( 2 );
+        b4.setThickness( 2 );
+        b1.setColor( Color.RED );
+        b2.setColor( Color.RED );
+        b3.setColor( Color.RED );
+        b4.setColor( Color.RED );
+        l.setColor( Color.GREEN );
+        l.setThickness( 2 );
+    }
+    
+    public void mouseClicked( MouseEvent me )
+    {
+        Point center = c.getCenter();
+        l.setP1( c.getCenter() );
+        b1.setP1( c.getCenter() );
+        b2.setP1( c.getCenter() );
+        b1.setP2( c.getCenter() );
+        b2.setP2( c.getCenter() );
+        b3.setP1( c.getCenter() );
+        b4.setP1( c.getCenter() );
+        Point startLoc = new Point( l.getP1() );
+        String startLocation = "Starting Location: " + startLoc;
+        a.setText( startLocation );
+        
+    }
+    
+    public void mousePressed( MouseEvent me )
+    {  
+        lastMousePoint = me.getPoint();
+        
+        
+    }
+    
+    public void updateInfo()
+    {
+        linePoint = c.getCenter();
+        /*
+        String message = "CurrentLocation: " + linePoint;
+        a.setText( message );
+        */
+    }
+    
+    public void mouseDragged( MouseEvent me )
+    {
+        Point currentPoint = me.getPoint();
+        int dX = currentPoint.x - lastMousePoint.x;
+        int dY = currentPoint.y - lastMousePoint.y;
+        setLocation( getLocation().x + dX, getLocation().y + dY );
+        linePoint = c.getCenter();
+        
+        l.setP2( linePoint );
+        inf = new Line();
+        inf.setColor( Color.BLUE );
+        inf.setP2( linePoint );
+        inf.setP1( linePoint );
+        inf.setThickness( 2 );
+        
+        Point lp1 = new Point( l.getP1() );
+        Point lp2 = new Point( l.getP2() );
+        
+        b1.setP1( l.getP1() );
+        b1.setP2( linePoint.x, lp1.y );
+        b2.setP1( l.getP1() );
+        b2.setP2( lp1.x, linePoint.y );
+        b3.setP1( b2.getP2() );
+        b3.setP2( linePoint );
+        b4.setP1( b1.getP2() );
+        b4.setP2( linePoint );
+        
+        Point startLoc = new Point( l.getP1() );
+        String currentLocation = "Current Location: " + linePoint;
+        a.setText( currentLocation );
+        
+        /*
+        double diaLength = Math.sqrt( Math.abs((lp2.x - lp1.x)^2) + Math.abs((lp2.y - lp1.y)^2) );
+        String diagonalLength = "Diagonal Length: " + diaLength;
+        a.setText( diagonalLength );
+        */
+        Point height1 = new Point( b2.getP1() );
+        Point height2 = new Point( b2.getP2() );
+        int heightRec = (int)Math.sqrt( Math.abs((height2.x - height1.x)^2) + Math.abs((height2.y - height1.y)^2) );
+        Point length1 = new Point( b1.getP1() );
+        Point length2 = new Point( b1.getP2() );
+        int lengthRec = (int)Math.sqrt( Math.abs((length2.x - length1.x)^2) + Math.abs((length2.y - length1.y)^2) );
+        String recDim = "Rectangle Dimensions: " + heightRec + "X" + lengthRec;
+        a.setText( recDim );
+        
+        int areaRec = ( heightRec * lengthRec );
+        String recArea = "Rectangle Area: " + areaRec;
+        a.setText( recArea );
+        
+        double dragPath = 
+        String dragPathLength = "Drag Path Length: " +
+        
+        lastMousePoint = currentPoint;
+    }
+    
+    
+    public static void main( String [] args )
+    {
+        new Frame();
+        AvatarSurveyor a = new AvatarSurveyor();
+        
+    }    
+}
